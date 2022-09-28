@@ -14,8 +14,6 @@ public class Dodge extends Effect{
 	@Override
 	public void remove(Champion c) {
 		c.setSpeed((int)(c.getSpeed()/1.05));
-
-		
 	}
 
 	public Dodge(int duration) {

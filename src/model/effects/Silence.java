@@ -11,7 +11,6 @@ public class Silence extends Effect {
 
 	public Silence(int duration) {
 		super("Silence", duration, EffectType.DEBUFF);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -24,7 +23,6 @@ public class Silence extends Effect {
 	public void remove(Champion c) {
 		c.setMaxActionPointsPerTurn(c.getMaxActionPointsPerTurn()-2);
 		c.setCurrentActionPoints(c.getCurrentActionPoints()-2);
-
 	}
 	
 	

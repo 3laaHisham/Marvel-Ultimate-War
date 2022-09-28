@@ -7,17 +7,14 @@ public class Villain extends Champion {
 
 	@Override
 	public void useLeaderAbility(ArrayList<Champion> targets) {
-		for (Champion champ: targets) {
+		for (Champion champ: targets)
 			if ((int)champ.getCurrentHP()/(int)champ.getMaxHP()<0.3)
 				champ.setCondition(Condition.KNOCKEDOUT);
-		}
-		
 	}
 
 	public Villain(String name, int maxHP, int mana, int maxActionPointsPerTurn, int speed, int attackRange,
 			int attackDamage) {
 		super(name, maxHP, mana, maxActionPointsPerTurn, speed, attackRange, attackDamage);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override

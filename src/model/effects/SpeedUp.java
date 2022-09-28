@@ -18,7 +18,6 @@ public class SpeedUp extends Effect {
 		c.setMaxActionPointsPerTurn(c.getMaxActionPointsPerTurn()+1);
 		c.setCurrentActionPoints(c.getCurrentActionPoints()+1);
 		c.setSpeed((int)(c.getSpeed()*1.15));
-		
 	}
 
 	@Override
@@ -26,7 +25,6 @@ public class SpeedUp extends Effect {
 		c.setCurrentActionPoints(c.getCurrentActionPoints()-1);
 		c.setMaxActionPointsPerTurn(c.getMaxActionPointsPerTurn()-1);
 		c.setSpeed((int)(c.getSpeed()/1.15));
-
 	}
 
 }

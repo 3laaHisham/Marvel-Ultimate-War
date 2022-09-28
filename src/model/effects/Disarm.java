@@ -17,12 +17,11 @@ public class Disarm extends Effect {
 	@Override
 	public void remove(Champion c) {
 		ArrayList<Ability> abArr = c.getAbilities();
-		for (int i = 0; i < abArr.size(); i++) {
+		for (int i = 0; i < abArr.size(); i++) 
 			if( abArr.get(i).getName()=="Punch") {
 				abArr.remove(i);
 				break;
 			}
-		}
 		
 	}
 

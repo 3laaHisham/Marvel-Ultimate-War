@@ -12,17 +12,11 @@ public class AntiHero extends Champion {
 	}
 
 	public void useLeaderAbility(ArrayList<Champion> targets) {
-	
-		
-			for (int i = 0; i < targets.size(); i++) {
-				
-				
-				Stun stun=new Stun(2);
-				targets.get(i).getAppliedEffects().add(stun);
-				stun.apply(targets.get(i));
-				
-			
-			}
+		for (int i = 0; i < targets.size(); i++) {
+			Stun stun=new Stun(2);
+			targets.get(i).getAppliedEffects().add(stun);
+			stun.apply(targets.get(i));
+		}
 			
 	}
 

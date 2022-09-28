@@ -99,8 +99,8 @@ public class GameView extends Application {
 		currDetail.setPadding(new Insets(20, 5, 0, 5));
 		currDetail.setSpacing(10);
 		Champion c = game.getCurrentChampion();
-		Boolean leader = game.whichTeam(c).getLeader().equals(c) ? true : false;
-		team = game.whichTeam(c).equals(game.getFirstPlayer()) ? "Red Team" : "Blue Team";
+		Boolean leader = game.whichPlayer(c).getLeader().equals(c) ? true : false;
+		team = game.whichPlayer(c).equals(game.getFirstPlayer()) ? "Red Team" : "Blue Team";
 		currDetail.getChildren().addAll(new MyText("Current HP", 14), c.getPbHealth(),
 				new MyText(team + " Leader? " + leader + "\n" + "\n" + c.toString2(), 15));
 		
@@ -133,7 +133,7 @@ public class GameView extends Application {
 		addicons();
 		while (!game.getTurnOrder().isEmpty()) {
 			Champion champ = (Champion) game.getTurnOrder().remove();
-			Player p = game.whichTeam(champ);
+			Player p = game.whichPlayer(champ);
 			DamageableButton btn = p.getChildren().stream().filter(child -> child.getText().equals(champ.getName()))
 					.findAny().get();
 			int i;
@@ -221,7 +221,7 @@ public class GameView extends Application {
 		//Update Current Champion Info
 		currDetail.getChildren().clear();
 		Champion c = game.getCurrentChampion();
-		Boolean leader = game.whichTeam(c).getLeader().equals(c) ? true : false;
+		Boolean leader = game.whichPlayer(c).getLeader().equals(c) ? true : false;
 		currDetail.getChildren().addAll(new MyText("Current HP", 14), c.getPbHealth(),
 				new MyText(team + " Leader? " + leader + "\n" + "\n" + c.toString2(), 15));
 		
@@ -462,7 +462,7 @@ public class GameView extends Application {
 					if (board[i][j] instanceof Champion) {
 						
 						Champion c = (Champion) board[i][j];
-						Player p = game.whichTeam(c);
+						Player p = game.whichPlayer(c);
 						DamageableButton btn = p.getChildren().stream()
 								.filter(child -> child.getText().equals(c.getName())).findAny().get();
 						btn.setFocusTraversable(false);
@@ -516,7 +516,7 @@ public class GameView extends Application {
 			@Override
 			public void handle(MouseEvent event) {
 				OverDetail.getChildren().clear();
-				Boolean leader = game.whichTeam(c).getLeader().equals(c) ? true : false;
+				Boolean leader = game.whichPlayer(c).getLeader().equals(c) ? true : false;
 				OverDetail.getChildren().addAll(new MyText("Current HP", 16), c.getPbHealth(),
 						new MyText("Leader? " + leader + "\n" + "\n" + "\n" + c.toString3(), 20));
 			}

@@ -21,24 +21,18 @@ public class Stun extends Effect {
 
 	@Override
 	public void remove(Champion c) {
-
-		
 		for(Effect e : c.getAppliedEffects()) 
 			if(e instanceof Stun) 
 				return;
 		
 		c.setCondition(Condition.ACTIVE);
-		for(Effect e : c.getAppliedEffects()) {
+		
+		for(Effect e : c.getAppliedEffects()) 
 			if(e instanceof Root) {
 				c.setCondition(Condition.ROOTED);
 				break;
 			}
-		}
-		
-		
 
-		
-		
 	}
 
 }
