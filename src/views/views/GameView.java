@@ -70,7 +70,6 @@ public class GameView extends Application {
 	private UnitButton castAbility;
 	private ArrayList<ImageView> icons;
 
-	// Use Toggle Button for refactor
 	@Override
 	public void start(Stage primaryStage) {
 		root = new BorderPane();
@@ -79,15 +78,15 @@ public class GameView extends Application {
 		String path2 = "./assests/windows/GameView2.jpg";
 		root.setBackground(MyBackGround.get(path2, path2));
 		
+		String backGroundStyle = "-fx-background-color: rgba(218,159,28,0.2);"
+				+ "-fx-border-width: 1; -fx-border-color: rgba(236, 236, 236,0.6)";
 		
 		grid = new GridPane();
 		grid.setHgap(5);
 		grid.setVgap(5);
 		grid.setPadding(new Insets(1, 1, 1, 1));
-		// grid.setPrefSize(500, 300);
 		grid.setAlignment(Pos.CENTER);
-		grid.setStyle("-fx-background-color: rgba(218,159,28,0.2);"
-				+ "-fx-border-width: 1; -fx-border-color: rgba(236, 236, 236,0.6);");
+		grid.setStyle(backGroundStyle);
 		grid.setFocusTraversable(false);
 		try {
 			game = new Game(p1, p2);
@@ -124,18 +123,16 @@ public class GameView extends Application {
 		turnOrder.setMaxSize(700, 80);
 		turnOrder.setMinSize(500, 70);
 		turnOrder.setAlignment(Pos.CENTER);
-		turnOrder.setStyle("-fx-background-color: rgba(218,159,28,0.2);"
-				+ "-fx-border-width: 1; -fx-border-color: rgba(236, 236, 236,0.6);");
-
+		turnOrder.setStyle(backGroundStyle);
 		turnOrder.setFocusTraversable(false);
+		//Update Turn Order
 		PriorityQueue store = new PriorityQueue(6);
 		icons = new ArrayList<>();
 		addicons();
 		while (!game.getTurnOrder().isEmpty()) {
 			Champion champ = (Champion) game.getTurnOrder().remove();
 			Player p = game.whichPlayer(champ);
-			DamageableButton btn = p.getChildren().stream().filter(child -> child.getText().equals(champ.getName()))
-					.findAny().get();
+			DamageableButton btn = p.getChampionButton(champ);
 			int i;
 			for (i = 0; i < game.getAvailableChampions().size(); i++)
 				if (game.getAvailableChampions().get(i).compareTo(champ) == 0)
@@ -146,6 +143,7 @@ public class GameView extends Application {
 		}
 		while (!store.isEmpty())
 			game.getTurnOrder().insert(store.remove());
+		
 		
 		// Players' details and Turn Order
 		playersInfo = new GridPane();
@@ -163,13 +161,13 @@ public class GameView extends Application {
 		
 		// Buttons (Bottom Panel)
 		attack = new UnitButton("Attack");
-		attack.setOnAction(attackHandler());
-		attack.setFocusTraversable(false);
 		endTurn = new UnitButton("End Turn", 130);
-		endTurn.setOnAction(endTurnHandler());
-		endTurn.setFocusTraversable(false);
 		useLeaderAbility = new UnitButton("Use Leader Ability", 200);
+		attack.setOnAction(attackHandler());
+		endTurn.setOnAction(endTurnHandler());
 		useLeaderAbility.setOnAction(useLeaderAbilityHandler());
+		attack.setFocusTraversable(false);
+		endTurn.setFocusTraversable(false);
 		useLeaderAbility.setFocusTraversable(false);
 		message = new MyText("", 20);
 		message.setStyle("-fx-background-color: rgba(210, 39, 39,0.4);");
@@ -193,9 +191,8 @@ public class GameView extends Application {
 		}
 
 		scene.setOnKeyPressed(moveHandler());
-
-		String backGroundStyle = "-fx-background-color: rgba(218,159,28,0.2);"
-				+ "-fx-border-width: 1; -fx-border-color: rgba(236, 236, 236,0.6)";
+		
+		
 		grid.setStyle(backGroundStyle);
 		currDetail.setStyle(backGroundStyle);
 		OverDetail.setStyle(backGroundStyle);
@@ -455,16 +452,27 @@ public class GameView extends Application {
 	}
 
 	public void fillBoard() {
-		int ii = 4;
+		String currChampStyle = "-fx-background-color:rgba(50,205,50,0.9);\r\n"
+				+ "    -fx-background-radius:0;\r\n" + "    -fx-border-color:black;\r\n"
+				+ "    -fx-border-width: 0 3 3 0;\r\n" + "    -fx-background-insets: 0;";
+		String firstPlayerTeam = "-fx-background-color:rgba(255,64,64,0.9);\r\n"
+				+ "    -fx-background-radius:0;\r\n" + "    -fx-border-color:black;\r\n"
+				+ "    -fx-border-width: 0 3 3 0;\r\n" + "    -fx-background-insets: 0;";
+		String secondPlayerTeam = "-fx-background-color:rgba(171,205,255,0.9);\r\n"
+				+ "    -fx-background-radius:0;\r\n" + "    -fx-border-color:black;\r\n"
+				+ "    -fx-border-width: 0 3 3 0;\r\n" + "    -fx-background-insets: 0;"; 
+		
+		int ii = 4; //To overcome grid mirror problem
+		
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++)
 				if (board[i][j] != null)
 					if (board[i][j] instanceof Champion) {
-						
 						Champion c = (Champion) board[i][j];
 						Player p = game.whichPlayer(c);
-						DamageableButton btn = p.getChildren().stream()
-								.filter(child -> child.getText().equals(c.getName())).findAny().get();
+						
+						//a champion button in board[ii][j]
+						DamageableButton btn = p.getChampionButton(c);
 						btn.setFocusTraversable(false);
 						btn.setOnAction(null);
 						c.getPbHealth().setProgress((double) c.getCurrentHP() / c.getMaxHP());
@@ -472,21 +480,15 @@ public class GameView extends Application {
 						
 						// Color buttons depending on which team and currChamp
 						if (game.getCurrentChampion().equals(c))
-							btn.setStyle("-fx-background-color:rgba(50,205,50,0.9);\r\n"
-									+ "    -fx-background-radius:0;\r\n" + "    -fx-border-color:black;\r\n"
-									+ "    -fx-border-width: 0 3 3 0;\r\n" + "    -fx-background-insets: 0;");
+							btn.setStyle(currChampStyle);
 						else if (p.equals(game.getFirstPlayer()))
-							btn.setStyle("-fx-background-color:rgba(255,64,64,0.9);\r\n"
-									+ "    -fx-background-radius:0;\r\n" + "    -fx-border-color:black;\r\n"
-									+ "    -fx-border-width: 0 3 3 0;\r\n" + "    -fx-background-insets: 0;");
+							btn.setStyle(firstPlayerTeam);
 						else
-							btn.setStyle("-fx-background-color:rgba(171,205,255,0.9);\r\n"
-									+ "    -fx-background-radius:0;\r\n" + "    -fx-border-color:black;\r\n"
-									+ "    -fx-border-width: 0 3 3 0;\r\n" + "    -fx-background-insets: 0;");
+							btn.setStyle(secondPlayerTeam);
 
 						grid.add(btn, j, ii);
-						
 					} else {
+						//a cover button in board[i][j]
 						DamageableButton btn = new DamageableButton("Cover",
 								new ImageView(new Image("file:./assests/icons/Cover.png")));
 						btn.setFocusTraversable(false);
@@ -503,6 +505,7 @@ public class GameView extends Application {
 						grid.add(btn, j, ii);
 					}
 				else {
+					//Empty Cell
 					DamageableButton btn = new DamageableButton("", null, 150, 100);
 					grid.add(btn, j, ii);
 					btn.setFocusTraversable(false);

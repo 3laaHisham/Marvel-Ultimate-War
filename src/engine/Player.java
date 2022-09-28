@@ -1,10 +1,7 @@
 package engine;
 
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
-
-import javafx.scene.Node;
 import model.world.Champion;
 import views.buttons.DamageableButton;
 
@@ -38,6 +35,12 @@ public class Player {
 
 	public List<DamageableButton> getChildren() {
 		return children;
+	}
+	
+	public DamageableButton getChampionButton(Champion champ) {
+		DamageableButton btn = this.getChildren().stream().filter(child -> child.getText().equals(champ.getName()))
+				.findAny().get();
+		return btn;
 	}
 
 }

@@ -25,7 +25,7 @@ public class Game {
 	public Game(Player firstPlayer, Player secondPlayer) throws Exception {
 		this.firstPlayer = firstPlayer;
 		this.secondPlayer = secondPlayer;
-		this.board = new Object[5][5];
+		this.board = new Object[BOARDHEIGHT][BOARDWIDTH];
 		availableChampions = new ArrayList<Champion>();
 		availableAbilities = new ArrayList<Ability>();
 		firstLeaderAbilityUsed = false;
@@ -467,13 +467,13 @@ public class Game {
 
 		default:
 			return;
-
 		}
+		
 		ability.execute(targets);
-		for (Damageable target : targets) {
+		for (Damageable target : targets)
 			if (target.getCurrentHP() == 0)
 				kill(target);
-		}
+
 		currChamp.setCurrentActionPoints(champCurrPoints - abilityMaxPoints);
 		currChamp.setMana(champCurrMana - abilityCostMana);
 		ability.setCurrentCooldown(ability.getBaseCooldown());
@@ -508,10 +508,10 @@ public class Game {
 		validateAndAdd(ability, damageable, targets);
 
 		ability.execute(targets);
-		for (Damageable target : targets) {
+		for (Damageable target : targets) 
 			if (target.getCurrentHP() == 0)
 				kill(target);
-		}
+		
 
 		currChamp.setCurrentActionPoints(champCurrPoints - abilityMaxPoints);
 		currChamp.setMana(champCurrMana - abilityCostMana);
@@ -524,7 +524,7 @@ public class Game {
 
 		Champion currChamp = getCurrentChampion();
 
-		if (a instanceof DamagingAbility) {
+		if (a instanceof DamagingAbility)
 			if (damageable instanceof Champion) {
 				Champion target = (Champion) damageable;
 				if (checkTeam(currChamp, target))
@@ -540,9 +540,9 @@ public class Game {
 
 			} else
 				targets.add((Cover) damageable);
-		}
+		
 
-		if (a instanceof HealingAbility) {
+		if (a instanceof HealingAbility) 
 			if (damageable instanceof Cover)
 				throw new InvalidTargetException();
 			else {
@@ -552,7 +552,6 @@ public class Game {
 				else
 					throw new InvalidTargetException();
 			}
-		}
 
 		if (a instanceof CrowdControlAbility) {
 			if (damageable instanceof Cover)
@@ -573,7 +572,6 @@ public class Game {
 
 	}
 
-	// add Kill the enemy champion when Villain
 	public void useLeaderAbility() throws LeaderNotCurrentException, LeaderAbilityAlreadyUsedException {
 		Champion currChamp = getCurrentChampion();
 		Player player = whichPlayer(currChamp);
@@ -656,8 +654,8 @@ public class Game {
 
 	private void placeCovers() {
 		for (int i = 0; i < 5;) {
-			int x = (int) Math.floor(Math.random() * 3) + 1;
-			int y = (int) Math.floor(Math.random() * 5);
+			int x = (int) Math.floor(Math.random() * (BOARDHEIGHT-2)) + 1;
+			int y = (int) Math.floor(Math.random() * BOARDWIDTH);
 			if (board[x][y] == null) {
 				board[x][y] = new Cover(x, y);
 				i++;
@@ -802,4 +800,5 @@ public class Game {
 		br.close();
 	}
 
+	
 }

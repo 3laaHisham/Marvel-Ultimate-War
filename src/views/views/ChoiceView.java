@@ -176,7 +176,9 @@ public class ChoiceView extends Application{
 			 	Champion champ = champs.get(i);
 				var b=new DamageableButton(champ.getName(), icons.get(i));
 				b.setAlignment(Pos.CENTER);
+				
 				var charButton =new DamageableButton(champ.getName(), fotos2.get(i),100,200,0.3);
+				
 				b.setOnAction(e ->{
 					if(p.getTeam().size()>=3) 
 						AlertBox.display("Error","You cannot select more than 3 champions");
@@ -258,21 +260,23 @@ public class ChoiceView extends Application{
 	}
 	
 	public void addfotos2() {
-		ImageView foto0 = new ImageView(new Image("file:"+"./assests/chars2/Captain America.png"));
-		ImageView foto1 = new ImageView(new Image("file:"+"./assests/chars2/Deadpool.png"));
-		ImageView foto2 = new ImageView(new Image("file:"+"./assests/chars2/Dr Strange.png"));
-		ImageView foto3 = new ImageView(new Image("file:"+"./assests/chars2/Electro.png"));
-		ImageView foto4 = new ImageView(new Image("file:"+"./assests/chars2/Ghost Rider.png"));
-		ImageView foto5 = new ImageView(new Image("file:"+"./assests/chars2/Hela.png"));
-		ImageView foto6 = new ImageView(new Image("file:"+"./assests/chars2/Hulk.png"));
-		ImageView foto7 = new ImageView(new Image("file:"+"./assests/chars2/Iceman.png"));
-		ImageView foto8 = new ImageView(new Image("file:"+"./assests/chars2/Ironman.png"));
-		ImageView foto9 = new ImageView(new Image("file:"+"./assests/chars2/Loki.png"));
-		ImageView foto10 = new ImageView(new Image("file:"+"./assests/chars2/Quicksilver.png"));
-		ImageView foto11 = new ImageView(new Image("file:"+"./assests/chars2/Spiderman.png"));
-		ImageView foto12 = new ImageView(new Image("file:"+"./assests/chars2/Thor.png"));
-		ImageView foto13 = new ImageView(new Image("file:"+"./assests/chars2/Venom.png"));
-		ImageView foto14 = new ImageView(new Image("file:"+"./assests/chars2/Yellowjacket.png"));
+		int w = 150;
+		int h = 250;
+		ImageView foto0 = new ImageView(new Image("file:"+"./assests/chars/Captain America.png", w, h, false, true, true));
+		ImageView foto1 = new ImageView(new Image("file:"+"./assests/chars/Deadpool.png", w, h, false, true, true));
+		ImageView foto2 = new ImageView(new Image("file:"+"./assests/chars/Dr Strange.png", w, h, false, true, true));
+		ImageView foto3 = new ImageView(new Image("file:"+"./assests/chars/Electro.png", w, h, false, true, true));
+		ImageView foto4 = new ImageView(new Image("file:"+"./assests/chars/Ghost Rider.png", w, h, false, true, true));
+		ImageView foto5 = new ImageView(new Image("file:"+"./assests/chars/Hela.png", w, h, false, true, true));
+		ImageView foto6 = new ImageView(new Image("file:"+"./assests/chars/Hulk.png", w, h, false, true, true));
+		ImageView foto7 = new ImageView(new Image("file:"+"./assests/chars/Iceman.png", w, h, false, true, true));
+		ImageView foto8 = new ImageView(new Image("file:"+"./assests/chars/Ironman.png", w, h, false, true, true));
+		ImageView foto9 = new ImageView(new Image("file:"+"./assests/chars/Loki.png", w, h, false, true, true));
+		ImageView foto10 = new ImageView(new Image("file:"+"./assests/chars/Quicksilver.png", w, h, false, true, true));
+		ImageView foto11 = new ImageView(new Image("file:"+"./assests/chars/Spiderman.png", w, h, false, true, true));
+		ImageView foto12 = new ImageView(new Image("file:"+"./assests/chars/Thor.png", w, h, false, true, true));
+		ImageView foto13 = new ImageView(new Image("file:"+"./assests/chars/Venom.png", w, h, false, true, true));
+		ImageView foto14 = new ImageView(new Image("file:"+"./assests/chars/Yellowjacket.png", w, h, false, true, true));
 		fotos2.add(foto0);fotos2.add(foto1);fotos2.add(foto2);fotos2.add(foto3);fotos2.add(foto4);fotos2.add(foto5);
 		fotos2.add(foto6);fotos2.add(foto7);fotos2.add(foto8);fotos2.add(foto9);fotos2.add(foto10);fotos2.add(foto11);
 		fotos2.add(foto12);fotos2.add(foto13);fotos2.add(foto14);
