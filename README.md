@@ -20,19 +20,19 @@ We look forward to hear your feedback
 <br>
 
 ## Screensots from the game
-| <img src="https://github.com/3laaHisham/Marvel-Ultimate-War/releases/download/untagged-0c6f4cea02d0f29507b6/ChooseNamesView.jpg"> |
+| <img src="https://github.com/3laaHisham/Marvel-Ultimate-War/releases/download/Images/ChooseNamesView.jpg"> |
 |:--:| 
 | **Choosing Names View** |
 
 <br>
 
-| ![grid](https://github.com/3laaHisham/Marvel-Ultimate-War/releases/download/untagged-0c6f4cea02d0f29507b6/ChooseChampionsView.jpg) |
+| ![grid](https://github.com/3laaHisham/Marvel-Ultimate-War/releases/download/Images/ChooseChampionsView.jpg) |
 | :--: |
 | **Choosing Champions View** |
 
 <br>
 
-| ![grid](https://github.com/3laaHisham/Marvel-Ultimate-War/releases/download/untagged-0c6f4cea02d0f29507b6/GameView.jpg) |
+| ![grid](https://github.com/3laaHisham/Marvel-Ultimate-War/releases/download/Images/GameView.jpg) |
 | :--: |
 | **Gameplay View** |
 
