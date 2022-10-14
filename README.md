@@ -9,7 +9,6 @@ The battle takes place on a 5x5 grid. Each cell in the grid can either be empty,
 
 
 
-
 ## How to Play
 1. Make sure you have Java JDK installed on your machine or download it from this [link](https://www.oracle.com/java/technologies/downloads/)
 2. Download the Game from [here](https://github.com/3laaHisham/Marvel-Ultimate-War/releases/download/v1.0/Marvel.rar)
